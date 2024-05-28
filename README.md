@@ -7,7 +7,6 @@ This project is a real-time employee task management tool designed to enable man
 To start the entire application, use the following command:
 
 ```sh
-Copy code
 npm run start:app
 ```
 
@@ -17,13 +16,11 @@ The backend is built using Node.js, Express.js, and TypeScript.
 Commands to run the backend:
 
 ```sh
-Copy code
 cd back-end && npm run dev
 ```
 
 Project Structure
 ```sh
-Copy code
 back-end
 |
 ├── certificates/       # Contains certificates for HTTPS
@@ -37,12 +34,14 @@ back-end
 ```
 
 # Database
+```sh
 Users: Contains information about user accounts
 Tasks: Contains information about tasks
 Employees: Contains information about employees
 Owner: Contains information about the owner or manager of employees
 Frontend
 The frontend is built using React.js.
+```
 
 # Commands
 To run the frontend:
@@ -53,8 +52,7 @@ cd front-end && npm run start
 ```
 
 # Project Structure
-plaintext
-Copy code
+```sh
 front-end
 |
 ├── css/                # Contains CSS files
@@ -62,3 +60,4 @@ front-end
 ├── dto/                # Contains data transfer objects
 ├── helper/             # Contains API helper methods
 └── index.tsx           # Main file for the frontend
+```
