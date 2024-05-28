@@ -2,6 +2,12 @@
 
 This project is a real-time employee task management tool designed to enable managers to efficiently manage tasks assigned to employees, track progress, and dynamically update task statuses. The application supports user authentication, employee management, task creation, assignment, and real-time updates for all connected users.
 
+## Demo Links
+https://www.loom.com/share/4e973c70ae1348e58c3478545bd5386f
+
+## Screenshot of the application
+
+
 
 ## Getting Started
 
