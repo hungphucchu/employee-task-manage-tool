@@ -31,9 +31,9 @@ class EmployeeController {
         }
     }
 
-    async getAllEmployee(req: Request, res: Response): Promise<void> {  
+    async getAllEmployeesByCriteria(req: Request, res: Response): Promise<void> {  
         try {
-            const employees = await employeeService.getAllItems();
+            const employees = await employeeService.getAllEmployeesByCriteria(req.body, true);
             if (employees) {
                 res.status(200).json(employees);
             } else {

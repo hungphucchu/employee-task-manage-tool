@@ -6,7 +6,7 @@ const router = Router();
 router.post('/setup',authenticateMiddleware.authenticateToken, employeeController.setupEmployeeAccount);
 router.post('/',authenticateMiddleware.authenticateToken, employeeController.createEmployee);
 router.get('/:employeeId',authenticateMiddleware.authenticateToken, employeeController.getEmployee);
-router.get('/',authenticateMiddleware.authenticateToken, employeeController.getAllEmployee);
+router.post('/criteria',authenticateMiddleware.authenticateToken, employeeController.getAllEmployeesByCriteria);
 router.delete('/',authenticateMiddleware.authenticateToken, employeeController.deleteEmployee);
 router.put('/',authenticateMiddleware.authenticateToken, employeeController.editEmployee);
 export default router;

@@ -6,6 +6,7 @@ import cors from 'cors';
 import userRoutes from './routes/userRoutes';
 import employeeRoutes from './routes/employeeRoutes';
 import { Server } from 'socket.io';
+import taskRoutes from './routes/taskRoutes';
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.use(cors());
 
 app.use('/api/users', userRoutes);
 app.use('/api/employees', employeeRoutes);
+app.use('/api/tasks', taskRoutes);
 
 const httpServer = http.createServer(app);
 const io = new Server(httpServer, {

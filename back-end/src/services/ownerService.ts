@@ -16,4 +16,4 @@ class OwnerService extends BaseService<Owner>{
 
 }
 
-export const employeeService = new OwnerService();
+export const ownerService = new OwnerService();

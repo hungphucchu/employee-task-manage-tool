@@ -24,10 +24,12 @@ const EmployeeTable: React.FC<EmployeeTableProps> = ({ employeeListUpdate, onEmp
         navigate('/user/login');
         return;
       }
-      const employees = await ApiHelper.getAllEmployee();
-      setEmployeeList(employees);
 
-      addEmployee(employees);
+      const employeesRes = await ApiHelper.getAllEmployeeByCriteria({ownerId: user.id});
+      if (employeesRes.success && employeesRes.employees){
+        setEmployeeList(employeesRes.employees);
+        addEmployee(employeesRes.employees);
+      }
     };
     getEmployeeList();
   }, [employeeListUpdate]);

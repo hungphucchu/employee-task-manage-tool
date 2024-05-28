@@ -51,6 +51,18 @@ class EmployeeService extends BaseService<Employee> {
           console.log(`Can not set up employee account due to: ${error}`)
       }
   }
+
+  public getAllEmployeesByCriteria = async (employee: Employee, matchAll: boolean) => {
+    let getUserByCriteriaRes = null;
+    try{
+      const employees = await employeeRepo.getItemsByCriteria(employee, matchAll);
+      if (employees && employees.length > 0) getUserByCriteriaRes = { success: true, employees: employees, message: "Complete getting the employees by criteria!"}
+      return getUserByCriteriaRes;
+    }catch(error){
+      console.error(`Error getting the employees: ${error}`);
+      return { success: false, message: error}
+    }
+  }
 }
 
 export const employeeService = new EmployeeService();

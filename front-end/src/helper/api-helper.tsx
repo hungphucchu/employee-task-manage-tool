@@ -5,6 +5,7 @@ class ApiHelper {
   private static backend_url = process.env.REACT_APP_BACKEND_URL;
   private static users_endpoint = process.env.REACT_APP_USERS_ENDPOINT;
   private static employees_endpoint = process.env.REACT_APP_EMPLOYEES_ENDPOINT;
+  private static tasks_endpoint = process.env.REACT_APP_TASKS_ENDPOINT;
 
   static async callApi(url: string, method: string = "GET", data: any = null) {
     const currentToken = localStorage.getItem('authToken') || "";
@@ -147,7 +148,17 @@ class ApiHelper {
     }
   }
 
-  static async getAllEmployee() {
+  static async getAllEmployeeByCriteria(employee: Employee) {
+    try {
+      const url = `${ApiHelper.backend_url}/${ApiHelper.employees_endpoint}/criteria`;
+      return await ApiHelper.callApi(url, "POST", employee);
+    } catch (error) {
+      console.error("Error getting all employees:", error);
+      throw new Error("Error getting all employees");
+    }
+  }
+
+  static async getAllTask() {
     try {
       const url = `${ApiHelper.backend_url}/${ApiHelper.employees_endpoint}`;
       return await ApiHelper.callApi(url, "GET");

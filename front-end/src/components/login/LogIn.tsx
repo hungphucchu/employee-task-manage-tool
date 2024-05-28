@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import '../../css/signin/SignInForm.css';
 import ApiHelper from '../../helper/api-helper';
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +11,6 @@ import Form from '../common/Form';
 const LogIn = () => {
   const navigate = useNavigate();
 
-  
   const { updateUser } = useUserContext(); 
 
   useEffect(() => {
