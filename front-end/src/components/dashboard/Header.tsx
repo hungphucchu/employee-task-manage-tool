@@ -56,7 +56,10 @@ const Header: React.FC = () => {
                 {user &&
                   Object.entries(user)
                     .filter(
-                      ([key]) => !["id", "ownerId", "accessCode"].includes(key),
+                      ([key]) =>
+                        !["id", "ownerId", "accessCode", "password"].includes(
+                          key,
+                        ),
                     )
                     .map(([key, value]) => (
                       <li key={key}>

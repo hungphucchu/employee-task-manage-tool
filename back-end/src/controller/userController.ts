@@ -22,12 +22,10 @@ class UserController {
       if (newUserAccountRes.success) res.status(201).json(newUserAccountRes);
       else res.status(400).json(newUserAccountRes);
     } else {
-      res
-        .status(400)
-        .send({
-          success: false,
-          message: "Please provide username or password",
-        });
+      res.status(400).send({
+        success: false,
+        message: "Please provide username or password",
+      });
     }
   };
 
@@ -106,13 +104,11 @@ class UserController {
       if (user.id) {
         const getUserRes = await userService.getItem(user.id);
         if (getUserRes)
-          res
-            .status(200)
-            .json({
-              success: true,
-              user: getUserRes,
-              message: "Complete getting user",
-            });
+          res.status(200).json({
+            success: true,
+            user: getUserRes,
+            message: "Complete getting user",
+          });
         else
           res.status(500).json({ success: false, message: "Can not get user" });
       }
@@ -139,19 +135,15 @@ class UserController {
           updateUser,
         );
         if (result) {
-          res
-            .status(200)
-            .json({
-              success: result,
-              message: "User edited with criteria successfully",
-            });
+          res.status(200).json({
+            success: result,
+            message: "User edited with criteria successfully",
+          });
         } else {
-          res
-            .status(500)
-            .json({
-              success: false,
-              message: "Can not edit user with criteria",
-            });
+          res.status(500).json({
+            success: false,
+            message: "Can not edit user with criteria",
+          });
         }
       }
     } catch (error) {

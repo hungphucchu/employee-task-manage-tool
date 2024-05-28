@@ -18,12 +18,10 @@ class AuthenticateMiddleware {
     const token = authHeader && authHeader.split(" ")[1];
 
     if (!process.env.ACCESS_TOKEN_SECRET) {
-      res
-        .status(500)
-        .json({
-          success: false,
-          message: "Server error: Token secret is not defined",
-        });
+      res.status(500).json({
+        success: false,
+        message: "Server error: Token secret is not defined",
+      });
       return;
     }
 

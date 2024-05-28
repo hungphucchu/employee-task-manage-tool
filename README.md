@@ -11,6 +11,7 @@ npm run start:app
 ```
 
 # Backend
+
 The backend is built using Node.js, Express.js, and TypeScript.
 
 Commands to run the backend:
@@ -20,6 +21,7 @@ cd back-end && npm run dev
 ```
 
 Project Structure
+
 ```sh
 back-end
 |
@@ -34,24 +36,27 @@ back-end
 ```
 
 # Database
+
 ```sh
 Users: Contains information about user accounts
 Tasks: Contains information about tasks
 Employees: Contains information about employees
 Owner: Contains information about the owner or manager of employees
-Frontend
-The frontend is built using React.js.
 ```
 
+Frontend
+The frontend is built using React.js.
+
 # Commands
+
 To run the frontend:
 
 ```sh
-Copy code
 cd front-end && npm run start
 ```
 
 # Project Structure
+
 ```sh
 front-end
 |

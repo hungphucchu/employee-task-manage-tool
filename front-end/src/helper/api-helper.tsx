@@ -100,7 +100,7 @@ class ApiHelper {
 
   static async editEmployee(employeeReq: Employee) {
     try {
-      const url = `${ApiHelper.backend_url}/${ApiHelper.employees_endpoint}/${employeeReq.id}`;
+      const url = `${ApiHelper.backend_url}/${ApiHelper.employees_endpoint}`;
       return await ApiHelper.callApi(url, "PUT", employeeReq);
     } catch (error) {
       console.error("Error creating new employee:", error);

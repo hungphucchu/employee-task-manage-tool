@@ -9,8 +9,7 @@ import ChatContainerOwner from "../chat/ChatContainerOwner";
 import TaskTable from "../task/TaskTable";
 
 const Dashboard: React.FC = () => {
-  const [activeComponent, setActiveComponent] =
-    useState<string>("manage-employee");
+  const [activeComponent, setActiveComponent] = useState<string>("");
   const { user } = useUserContext();
 
   const renderContent = () => {
@@ -26,7 +25,7 @@ const Dashboard: React.FC = () => {
           <ChatContainerEmployee />
         );
       default:
-        return !user?.employeeId ? <TaskTable /> : <MainContent />;
+        return !user?.employeeId ? <MainContent /> : <TaskTable />;
     }
   };
 

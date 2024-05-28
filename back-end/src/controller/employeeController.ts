@@ -61,12 +61,10 @@ class EmployeeController {
         address,
       });
       if (result.success) {
-        res
-          .status(201)
-          .json({
-            message: "Employee created successfully",
-            employeeId: result.id,
-          });
+        res.status(201).json({
+          message: "Employee created successfully",
+          employeeId: result.id,
+        });
       } else {
         res.status(500).json({ message: "Failed to create employee" });
       }

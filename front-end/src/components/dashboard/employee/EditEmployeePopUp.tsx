@@ -28,10 +28,22 @@ const EditEmployeePopup: React.FC<EditEmployeePopupProps> = ({
   const editEmployee = async (editEmployee: Employee) => {
     try {
       if (editEmployee) {
-        const result = await ApiHelper.editEmployee({
-          ...editEmployee,
+        const updateEmployee: Employee = {
           id: employee?.id,
-        });
+          name: editEmployee.name !== "" ? editEmployee.name : employee.name,
+          address:
+            editEmployee.address !== ""
+              ? editEmployee.address
+              : employee.address,
+          role: editEmployee.role !== "" ? editEmployee.role : employee.role,
+          department:
+            editEmployee.department !== ""
+              ? editEmployee.department
+              : employee.department,
+        };
+
+        const result = await ApiHelper.editEmployee(updateEmployee);
+
         if (result.success) {
           setIsEdit(true);
           onEmployeeListUpdate();

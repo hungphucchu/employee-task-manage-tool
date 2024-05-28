@@ -115,9 +115,11 @@ const TaskTable: React.FC = () => {
                 <button onClick={() => handleDelete(String(task.id))}>
                   Delete
                 </button>
-                <button onClick={() => handleAssign(String(task.id))}>
-                  Assign
-                </button>
+                {!user?.employeeId && (
+                  <button onClick={() => handleAssign(String(task.id))}>
+                    Assign
+                  </button>
+                )}
               </td>
             </tr>
           ))}
