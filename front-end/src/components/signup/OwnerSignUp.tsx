@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import '../../css/signin/SignInForm.css';
-import SignInBox from '../common/Form'; // Import InputField type from SignInBox
 import ApiHelper from '../../helper/api-helper';
 import { useNavigate } from 'react-router-dom';
 import { User } from '../../dto/common.dto';

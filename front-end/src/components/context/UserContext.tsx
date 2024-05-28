@@ -1,5 +1,3 @@
-// src/context/UserContext.tsx
-
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 import { User } from '../../dto/common.dto';
 
@@ -29,11 +27,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const updateUser = (user: User) => {
     setUser(user);
   };
-
-  // const logout = () => {
-  //   setUser(null);
-  // };
-
+  
   return (
     <UserContext.Provider value={{ user, updateUser }}>
       {children}

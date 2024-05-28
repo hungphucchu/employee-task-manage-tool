@@ -1,5 +1,4 @@
-import { BaseWithKey } from '../dto/common.dto'; // Assuming you have this interface in a common DTO file
-import BaseRepo from '../repository/baseRepo'; // Import the generic BaseRepo class
+import BaseRepo from '../repository/baseRepo';
 
 class BaseService<T> {
   private readonly repo: BaseRepo<T>;

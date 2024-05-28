@@ -3,7 +3,7 @@ import '../../css/chat/ChatBox.css';
 
 export interface Message {
   text: string;
-  sender: string; // Add sender property
+  sender: string;
 }
 
 interface ChatBoxProps {

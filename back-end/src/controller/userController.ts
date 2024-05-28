@@ -1,4 +1,3 @@
-// src/controllers/userController.ts
 import { Request, Response } from 'express';
 import { userService } from '../services/userService';
 import { User } from '../dto/common.dto';

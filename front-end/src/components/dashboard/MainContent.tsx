@@ -1,4 +1,3 @@
-// src/components/MainContent.tsx
 import React, { useState } from 'react';
 import EmployeeTable from './employee/EmployeeTable';
 import '../../css/dashboard/MainContent.css';

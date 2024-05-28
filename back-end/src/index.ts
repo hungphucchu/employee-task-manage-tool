@@ -21,25 +21,22 @@ app.use('/api/employees', employeeRoutes);
 const httpServer = http.createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: '*', // Allow all origins
-    methods: ['*'] // Allow all methods
+    origin: '*', 
+    methods: ['*']
   }
 });
 
 io.on('connection', (socket) => {
-  console.log('A user connected', socket.id);
+  console.log('Socket connection ID: ', socket.id);
 
-  // Join room with user ID
   socket.on('joinRoom', (userId) => {
     socket.join(userId);
     console.log(`User with ID ${userId} joined room ${userId}`);
   });
 
-  // Listen for messages from User to User based on their IDs
   socket.on('userToUserMessage', (data) => {
     console.log("Received data: ", data);
     const { senderId, receiverId, message, username } = data;
-    // Send message to the specified receiver
     io.to(receiverId).emit('userToUserMessage', { senderId, username, message });
   });
 

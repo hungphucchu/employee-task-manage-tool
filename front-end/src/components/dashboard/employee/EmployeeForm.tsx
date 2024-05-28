@@ -1,4 +1,3 @@
-// src/components/CreateEmployeePopup.tsx
 import React, { useState } from 'react';
 import '../../../css/common/PopUp.css';
 import { Employee } from '../../../dto/common.dto';
@@ -28,7 +27,7 @@ const EmployeeForm: React.FC<CreateEmployeePopupProps> = ({ isOpen, onClose, onC
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    setErrorMessage(null); // Reset the error message before making the API call
+    setErrorMessage(null); 
     try {
       const response = await ApiHelper.setupNewEmployeeAccount({...employee, ownerId: user?.id});
       if (response.success) {

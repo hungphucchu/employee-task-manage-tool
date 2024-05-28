@@ -27,8 +27,6 @@ const EmployeeTable: React.FC<EmployeeTableProps> = ({ employeeListUpdate, onEmp
       const employees = await ApiHelper.getAllEmployee();
       setEmployeeList(employees);
 
-    
-      // Add employees to the context
       addEmployee(employees);
     };
     getEmployeeList();

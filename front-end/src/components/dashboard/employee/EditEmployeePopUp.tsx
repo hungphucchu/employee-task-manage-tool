@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Employee } from '../../../dto/common.dto';
 import ApiHelper from '../../../helper/api-helper';
-import '../../../css/common/PopUp.css'; // Make sure to import the CSS
+import '../../../css/common/PopUp.css';
 import Popup from '../../common/PopUp';
 import Button from '../../common/Button';
 import InputForm, { InputField } from '../../common/InputForm';

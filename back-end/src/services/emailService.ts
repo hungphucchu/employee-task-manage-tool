@@ -1,4 +1,3 @@
-// src/mailer.ts
 import nodemailer, { Transporter } from 'nodemailer';
 import dotenv from 'dotenv';
 
@@ -20,14 +19,13 @@ class EmailService {
       EmailService.transporter = nodemailer.createTransport({
         host: process.env.SMTP_HOST,
         port: parseInt(process.env.SMTP_PORT || '587', 10),
-        secure: process.env.SMTP_SECURE === 'true', // true for 465, false for other ports
+        secure: process.env.SMTP_SECURE === 'true', 
         auth: {
           user: process.env.SMTP_USER,
           pass: process.env.SMTP_PASS,
         },
       });
 
-      // Verify the connection configuration
       EmailService.transporter.verify((error, success) => {
         if (error) {
           console.error('Error configuring the transporter:', error);

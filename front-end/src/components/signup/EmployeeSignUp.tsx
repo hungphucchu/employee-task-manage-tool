@@ -1,11 +1,10 @@
 import '../../css/signin/SignInForm.css';
-import { InputField } from '../common/InputForm'; // Import InputField type from SignInBox
+import { InputField } from '../common/InputForm';
 import ApiHelper from '../../helper/api-helper';
 import { useNavigate } from 'react-router-dom';
 import { User } from '../../dto/common.dto';
 import { useLocation } from 'react-router-dom';
 import InputForm from '../common/Form';
-import { access } from 'fs';
 
 
 const EmployeeSignUp = () => {

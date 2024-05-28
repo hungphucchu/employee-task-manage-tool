@@ -10,12 +10,10 @@ class BaseRepo<T> {
     this.tableName = tableName;
   }
 
-  // getItemsByCriteria specifically requires T to extend BaseWithKey
   getItemsByCriteria = async <U extends T & BaseWithKey>(criteria: Partial<U>, matchAll: boolean = true): Promise<U[]> => {
     const dbRef = ref(database, this.tableName);
     const items: U[] = [];
 
-    // If criteria has only one key, use a simple query
     if (Object.keys(criteria).length === 1) {
       const [key, value] = Object.entries(criteria)[0];
       const itemQuery = query(dbRef, orderByChild(key), equalTo(value));
@@ -108,7 +106,6 @@ class BaseRepo<T> {
     }
   };
 
-  // Update an item based on search criteria
   updateItemWithCriteria = async <U extends T & BaseWithKey>(searchData: Partial<U>, updatedData: Partial<T>, matchAll: boolean = true): Promise<boolean> => {
     const items = await this.getItemsByCriteria(searchData, matchAll);
     let result = false

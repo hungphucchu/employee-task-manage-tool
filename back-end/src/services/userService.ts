@@ -1,4 +1,3 @@
-// src/services/userService.ts
 import { User, } from '../dto/common.dto';
 import { userRepo } from '../repository/userRepo';
 import { utils } from '../utills';

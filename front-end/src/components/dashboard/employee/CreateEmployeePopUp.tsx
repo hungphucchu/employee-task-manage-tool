@@ -1,4 +1,3 @@
-// src/components/CreateEmployeePopup.tsx
 import React from 'react';
 import { useState, useEffect } from 'react';
 import EmployeeForm from './EmployeeForm';

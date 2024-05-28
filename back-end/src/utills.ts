@@ -38,7 +38,7 @@ class Utils {
 
   // Method to hash a password
   hashPassword = async (password: string): Promise<string> => {
-    const saltRounds = 10; // Number of salt rounds for bcrypt
+    const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
     return hashedPassword;
   };
