@@ -1,4 +1,4 @@
-import BaseRepo from '../repository/baseRepo';
+import BaseRepo from "../repository/baseRepo";
 
 class BaseService<T> {
   private readonly repo: BaseRepo<T>;
@@ -20,17 +20,17 @@ class BaseService<T> {
     try {
       return await this.repo.getAllItems();
     } catch (error) {
-      console.error('Error getting all items:', error);
+      console.error("Error getting all items:", error);
       return null;
     }
   }
 
-  async createItem(item: T): Promise<{ success: boolean, id?: string }> {
+  async createItem(item: T): Promise<{ success: boolean; id?: string }> {
     try {
       const result = await this.repo.createItem(item);
       return result;
     } catch (error) {
-      console.error('Error creating item:', error);
+      console.error("Error creating item:", error);
       return { success: false };
     }
   }
@@ -52,7 +52,6 @@ class BaseService<T> {
       return false;
     }
   }
-
 }
 
 export default BaseService;

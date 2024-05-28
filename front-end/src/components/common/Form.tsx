@@ -1,5 +1,5 @@
-import React, { ReactElement } from 'react';
-import InputForm, { InputField } from './InputForm';
+import React, { ReactElement } from "react";
+import InputForm, { InputField } from "./InputForm";
 
 const Form: React.FC<{
   headerVal: string;
@@ -16,7 +16,12 @@ const Form: React.FC<{
       </button>
       <h2>{headerVal}</h2>
       <p>{paragraphVal}</p>
-      <InputForm inputs={inputs} onSubmit={onSubmit} buttonClassName='next-button' buttonName='Next' />
+      <InputForm
+        inputs={inputs}
+        onSubmit={onSubmit}
+        buttonClassName="next-button"
+        buttonName="Next"
+      />
       {children}
     </div>
   );

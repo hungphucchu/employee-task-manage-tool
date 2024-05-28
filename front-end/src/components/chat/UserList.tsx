@@ -1,7 +1,6 @@
-import React from 'react';
-import '../../css/chat/UserList.css';
-import { Employee } from '../../dto/common.dto';
-
+import React from "react";
+import "../../css/chat/UserList.css";
+import { Employee } from "../../dto/common.dto";
 
 interface UserListProps {
   users: Employee[];
@@ -9,14 +8,18 @@ interface UserListProps {
   setSelectedUser: (user: Employee) => void;
 }
 
-const UserList: React.FC<UserListProps> = ({ users, selectedUser, setSelectedUser }) => {
+const UserList: React.FC<UserListProps> = ({
+  users,
+  selectedUser,
+  setSelectedUser,
+}) => {
   return (
     <div className="user-list">
-      {users.map(user => (
+      {users.map((user) => (
         <div
           key={user.userId}
-          className={`user-item ${selectedUser && selectedUser.userId === user.userId ? 'selected' : ''}`}
-          onClick={() => setSelectedUser({...user, userId: user.id})}
+          className={`user-item ${selectedUser && selectedUser.userId === user.userId ? "selected" : ""}`}
+          onClick={() => setSelectedUser({ ...user, userId: user.id })}
         >
           {user.name}
         </div>

@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement } from "react";
 
 export interface InputField {
   name: string;
@@ -8,22 +8,27 @@ export interface InputField {
 }
 
 interface InputFormProps {
-  buttonName: string,
-  buttonClassName: string,
+  buttonName: string;
+  buttonClassName: string;
   inputs: InputField[];
   onSubmit: (inputVals: Record<string, string>) => void;
 }
 
-const InputForm: React.FC<InputFormProps> = ({ buttonName, buttonClassName, inputs, onSubmit }) => {
+const InputForm: React.FC<InputFormProps> = ({
+  buttonName,
+  buttonClassName,
+  inputs,
+  onSubmit,
+}) => {
   const initialState: Record<string, string> = {};
   inputs.forEach((input) => {
-    initialState[input.name] = '';
+    initialState[input.name] = "";
   });
   const [inputVals, setInputVals] = React.useState(initialState);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>,
-    name: string
+    name: string,
   ) => {
     setInputVals({ ...inputVals, [name]: e.target.value });
   };

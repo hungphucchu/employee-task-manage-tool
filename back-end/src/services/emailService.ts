@@ -1,5 +1,5 @@
-import nodemailer, { Transporter } from 'nodemailer';
-import dotenv from 'dotenv';
+import nodemailer, { Transporter } from "nodemailer";
+import dotenv from "dotenv";
 
 dotenv.config();
 
@@ -18,8 +18,8 @@ class EmailService {
     if (!EmailService.transporter) {
       EmailService.transporter = nodemailer.createTransport({
         host: process.env.SMTP_HOST,
-        port: parseInt(process.env.SMTP_PORT || '587', 10),
-        secure: process.env.SMTP_SECURE === 'true', 
+        port: parseInt(process.env.SMTP_PORT || "587", 10),
+        secure: process.env.SMTP_SECURE === "true",
         auth: {
           user: process.env.SMTP_USER,
           pass: process.env.SMTP_PASS,
@@ -28,9 +28,9 @@ class EmailService {
 
       EmailService.transporter.verify((error, success) => {
         if (error) {
-          console.error('Error configuring the transporter:', error);
+          console.error("Error configuring the transporter:", error);
         } else {
-          console.log('Mailer is ready to send emails');
+          console.log("Mailer is ready to send emails");
         }
       });
     }
@@ -39,10 +39,10 @@ class EmailService {
   public async sendEmail(options: MailOptions) {
     try {
       const info = await EmailService.transporter.sendMail(options);
-      console.log('Email sent:', info.messageId);
+      console.log("Email sent:", info.messageId);
       return info;
     } catch (error) {
-      console.error('Error sending email:', error);
+      console.error("Error sending email:", error);
       throw error;
     }
   }

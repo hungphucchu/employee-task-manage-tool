@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { Employee } from '../../../dto/common.dto';
-import ApiHelper from '../../../helper/api-helper';
-import '../../../css/common/PopUp.css';
-import Popup from '../../common/PopUp';
-import Button from '../../common/Button';
-import InputForm, { InputField } from '../../common/InputForm';
+import React, { useState, useEffect } from "react";
+import { Employee } from "../../../dto/common.dto";
+import ApiHelper from "../../../helper/api-helper";
+import "../../../css/common/PopUp.css";
+import Popup from "../../common/PopUp";
+import Button from "../../common/Button";
+import InputForm, { InputField } from "../../common/InputForm";
 
 interface EditEmployeePopupProps {
   onClose: () => void;
@@ -12,7 +12,11 @@ interface EditEmployeePopupProps {
   onEmployeeListUpdate: () => void;
 }
 
-const EditEmployeePopup: React.FC<EditEmployeePopupProps> = ({ onClose, employee, onEmployeeListUpdate }) => {
+const EditEmployeePopup: React.FC<EditEmployeePopupProps> = ({
+  onClose,
+  employee,
+  onEmployeeListUpdate,
+}) => {
   const [isEdit, setIsEdit] = useState(false);
 
   useEffect(() => {
@@ -24,7 +28,10 @@ const EditEmployeePopup: React.FC<EditEmployeePopupProps> = ({ onClose, employee
   const editEmployee = async (editEmployee: Employee) => {
     try {
       if (editEmployee) {
-        const result = await ApiHelper.editEmployee({...editEmployee, id: employee?.id});
+        const result = await ApiHelper.editEmployee({
+          ...editEmployee,
+          id: employee?.id,
+        });
         if (result.success) {
           setIsEdit(true);
           onEmployeeListUpdate();
@@ -36,31 +43,31 @@ const EditEmployeePopup: React.FC<EditEmployeePopupProps> = ({ onClose, employee
   };
 
   const nameInput: InputField = {
-    name: 'name',
-    type: 'text',
+    name: "name",
+    type: "text",
     placeholder: `${employee.name}`,
-    inputName: "Employee Name"
+    inputName: "Employee Name",
   };
 
   const roleInput: InputField = {
-    name: 'role',
-    type: 'text',
+    name: "role",
+    type: "text",
     placeholder: `${employee.role}`,
-    inputName: "Employee Role"
+    inputName: "Employee Role",
   };
 
   const departmentInput: InputField = {
-    name: 'department',
-    type: 'text',
+    name: "department",
+    type: "text",
     placeholder: `${employee.department}`,
     inputName: "Employee Department",
   };
 
   const addressInput: InputField = {
-    name: 'address',
-    type: 'text',
+    name: "address",
+    type: "text",
     placeholder: `${employee.address}`,
-    inputName: "Employee Address"
+    inputName: "Employee Address",
   };
 
   return (
@@ -73,7 +80,12 @@ const EditEmployeePopup: React.FC<EditEmployeePopupProps> = ({ onClose, employee
       ) : (
         <>
           <h2>{`Edit employee with name of ${employee.name}`}</h2>
-          <InputForm inputs={[nameInput,roleInput,departmentInput,addressInput]} onSubmit={editEmployee} buttonName='confirm to edit' buttonClassName='edit-button' />
+          <InputForm
+            inputs={[nameInput, roleInput, departmentInput, addressInput]}
+            onSubmit={editEmployee}
+            buttonName="confirm to edit"
+            buttonClassName="edit-button"
+          />
         </>
       )}
     </Popup>

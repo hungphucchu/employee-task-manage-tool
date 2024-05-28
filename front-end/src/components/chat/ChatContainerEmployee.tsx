@@ -1,31 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import ChatBox, { Message } from './ChatBox';
-import '../../css/chat/ChatContainer.css';
-import { io, Socket } from 'socket.io-client';
-import ApiHelper from '../../helper/api-helper';
-import { useUserContext } from '../context/UserContext';
+import React, { useState, useEffect } from "react";
+import ChatBox, { Message } from "./ChatBox";
+import "../../css/chat/ChatContainer.css";
+import { io, Socket } from "socket.io-client";
+import ApiHelper from "../../helper/api-helper";
+import { useUserContext } from "../context/UserContext";
 
-const socket: Socket = io('http://localhost:3001');
+const socket: Socket = io("http://localhost:3001");
 
 const ChatContainerEmployee: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [owner, setOwner] = useState<any>({});
   const { user } = useUserContext();
 
-
   useEffect(() => {
-    const userId = user?.id; 
+    const userId = user?.id;
     if (userId) {
-      socket.emit('joinRoom', userId);
+      socket.emit("joinRoom", userId);
     }
 
-    socket.on('userToUserMessage', (data) => {
+    socket.on("userToUserMessage", (data) => {
       const { senderId, message, username } = data;
-      setMessages((prevMessages) => [...prevMessages, { sender: username, text: message.text }]);
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { sender: username, text: message.text },
+      ]);
     });
 
     return () => {
-      socket.off('userToUserMessage');
+      socket.off("userToUserMessage");
     };
   }, []);
 
@@ -47,12 +49,15 @@ const ChatContainerEmployee: React.FC = () => {
   }, [user?.ownerId]);
 
   const handleSendMessage = (newMessage: string) => {
-    if (newMessage.trim() !== '') {
-      const message: Message = { sender: String(user?.username), text: newMessage };
+    if (newMessage.trim() !== "") {
+      const message: Message = {
+        sender: String(user?.username),
+        text: newMessage,
+      };
       setMessages((prevMessages) => [...prevMessages, message]);
-      socket.emit('userToUserMessage', {
-        senderId: user?.id, 
-        receiverId: owner.id, 
+      socket.emit("userToUserMessage", {
+        senderId: user?.id,
+        receiverId: owner.id,
         username: user?.username,
         message,
       });
@@ -62,7 +67,11 @@ const ChatContainerEmployee: React.FC = () => {
   return (
     <div className="chat-container">
       <div className="chat-header">{owner?.username}</div>
-      <ChatBox messages={messages} onSendMessage={handleSendMessage} selectedUser={owner} />
+      <ChatBox
+        messages={messages}
+        onSendMessage={handleSendMessage}
+        selectedUser={owner}
+      />
     </div>
   );
 };

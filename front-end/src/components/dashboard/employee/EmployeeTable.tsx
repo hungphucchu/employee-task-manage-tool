@@ -1,32 +1,37 @@
-import React, { useEffect, useState } from 'react';
-import EmployeeRow from './EmployeeRow';
-import '../../../css/dashboard/EmployeeTable.css';
-import { Employee } from '../../../dto/common.dto';
-import ApiHelper from '../../../helper/api-helper';
-import { useUserContext } from '../../context/UserContext';
-import { useNavigate } from 'react-router-dom';
-import { useEmployeeContext } from '../../context/EmployeesContext';
+import React, { useEffect, useState } from "react";
+import EmployeeRow from "./EmployeeRow";
+import "../../../css/dashboard/EmployeeTable.css";
+import { Employee } from "../../../dto/common.dto";
+import ApiHelper from "../../../helper/api-helper";
+import { useUserContext } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
+import { useEmployeeContext } from "../../context/EmployeesContext";
 
 interface EmployeeTableProps {
   employeeListUpdate: boolean;
   onEmployeeListUpdate: () => void;
 }
 
-const EmployeeTable: React.FC<EmployeeTableProps> = ({ employeeListUpdate, onEmployeeListUpdate }: EmployeeTableProps) => {
+const EmployeeTable: React.FC<EmployeeTableProps> = ({
+  employeeListUpdate,
+  onEmployeeListUpdate,
+}: EmployeeTableProps) => {
   const [employeeList, setEmployeeList] = useState<Employee[]>([]);
   const { user } = useUserContext();
-  const { addEmployee } = useEmployeeContext(); 
+  const { addEmployee } = useEmployeeContext();
   const navigate = useNavigate();
 
   useEffect(() => {
     const getEmployeeList = async () => {
       if (!user) {
-        navigate('/user/login');
+        navigate("/user/login");
         return;
       }
 
-      const employeesRes = await ApiHelper.getAllEmployeeByCriteria({ownerId: user.id});
-      if (employeesRes.success && employeesRes.employees){
+      const employeesRes = await ApiHelper.getAllEmployeeByCriteria({
+        ownerId: user.id,
+      });
+      if (employeesRes.success && employeesRes.employees) {
         setEmployeeList(employeesRes.employees);
         addEmployee(employeesRes.employees);
       }
@@ -48,7 +53,11 @@ const EmployeeTable: React.FC<EmployeeTableProps> = ({ employeeListUpdate, onEmp
       </thead>
       <tbody>
         {employeeList.map((employee, index) => (
-          <EmployeeRow key={index} employee={employee} onEmployeeListUpdate={onEmployeeListUpdate} />
+          <EmployeeRow
+            key={index}
+            employee={employee}
+            onEmployeeListUpdate={onEmployeeListUpdate}
+          />
         ))}
       </tbody>
     </table>

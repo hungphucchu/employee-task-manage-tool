@@ -1,13 +1,13 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import OwnerSignUp from './signup/OwnerSignUp';
-import EmployeeSignUp from './signup/EmployeeSignUp';
-import Dashboard from './dashboard/Dashboard';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import OwnerSignUp from "./signup/OwnerSignUp";
+import EmployeeSignUp from "./signup/EmployeeSignUp";
+import Dashboard from "./dashboard/Dashboard";
 
-import '../css/App.css';
-import '@fortawesome/fontawesome-free/css/all.min.css';
-import { UserProvider } from './context/UserContext';
-import LogIn from './login/LogIn';
-import { EmployeeProvider } from './context/EmployeesContext';
+import "../css/App.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import { UserProvider } from "./context/UserContext";
+import LogIn from "./login/LogIn";
+import { EmployeeProvider } from "./context/EmployeesContext";
 
 function App() {
   return (

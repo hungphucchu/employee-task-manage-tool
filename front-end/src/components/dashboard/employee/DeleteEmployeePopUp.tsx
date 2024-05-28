@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Employee } from '../../../dto/common.dto';
-import ApiHelper from '../../../helper/api-helper';
-import '../../../css/common/PopUp.css'; 
-import Popup from '../../common/PopUp';
-import Button from '../../common/Button';
+import React, { useState, useEffect } from "react";
+import { Employee } from "../../../dto/common.dto";
+import ApiHelper from "../../../helper/api-helper";
+import "../../../css/common/PopUp.css";
+import Popup from "../../common/PopUp";
+import Button from "../../common/Button";
 
 interface DeleteEmployeePopupProps {
   onClose: () => void;
@@ -11,7 +11,11 @@ interface DeleteEmployeePopupProps {
   onEmployeeListUpdate: () => void;
 }
 
-const DeleteEmployeePopup: React.FC<DeleteEmployeePopupProps> = ({ onClose, employee, onEmployeeListUpdate }) => {
+const DeleteEmployeePopup: React.FC<DeleteEmployeePopupProps> = ({
+  onClose,
+  employee,
+  onEmployeeListUpdate,
+}) => {
   const [isDelete, setIsDelete] = useState(false);
 
   useEffect(() => {
@@ -44,7 +48,11 @@ const DeleteEmployeePopup: React.FC<DeleteEmployeePopupProps> = ({ onClose, empl
       ) : (
         <>
           <div>{`Do you want to delete the employee ${employee.name}?`}</div>
-          <Button className="delete-button" text={`Confirm to delete employee ${employee.name}`} onClick={deleteEmployee} />
+          <Button
+            className="delete-button"
+            text={`Confirm to delete employee ${employee.name}`}
+            onClick={deleteEmployee}
+          />
         </>
       )}
     </Popup>

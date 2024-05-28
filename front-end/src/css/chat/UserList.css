@@ -1,17 +1,16 @@
 .user-list {
-    width: 200px;
-    background-color: #f8f9fa;
-    border-right: 1px solid #ddd;
-    overflow-y: auto;
-  }
-  
-  .user-item {
-    padding: 10px;
-    cursor: pointer;
-  }
-  
-  .user-item.selected {
-    background-color: #007bff;
-    color: white;
-  }
-  
+  width: 200px;
+  background-color: #f8f9fa;
+  border-right: 1px solid #ddd;
+  overflow-y: auto;
+}
+
+.user-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.user-item.selected {
+  background-color: #007bff;
+  color: white;
+}

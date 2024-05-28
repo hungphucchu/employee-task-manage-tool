@@ -1,7 +1,7 @@
-import React, { useState, useRef } from 'react';
-import '../../css/dashboard/Header.css';
-import { useUserContext } from '../context/UserContext';
-import Button from '../common/Button';
+import React, { useState, useRef } from "react";
+import "../../css/dashboard/Header.css";
+import { useUserContext } from "../context/UserContext";
+import Button from "../common/Button";
 
 const Header: React.FC = () => {
   const { user, updateUser } = useUserContext();
@@ -18,7 +18,7 @@ const Header: React.FC = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setEditedUser(prevUser => ({
+    setEditedUser((prevUser) => ({
       ...prevUser,
       [name]: value,
     }));
@@ -47,30 +47,45 @@ const Header: React.FC = () => {
         >
           {isDropdownOpen && (
             <div className="dropdown" ref={dropdownRef}>
-              <Button className='close-drop-down' text={'X'} onClick={handleCancel} />
+              <Button
+                className="close-drop-down"
+                text={"X"}
+                onClick={handleCancel}
+              />
               <ul>
-                {user && Object.entries(user)
-                  .filter(([key]) => !['id', 'ownerId', 'accessCode'].includes(key))
-                  .map(([key, value]) => (
-                    <li key={key}>
-                      <strong>{key}: </strong> 
-                      {isEditing ? (
-                        <input 
-                          type="text" 
-                          name={key} 
-                          value={editedUser[key as keyof typeof editedUser]} 
-                          onChange={handleInputChange} 
-                        />
-                      ) : (
-                        <span>{value}</span>
-                      )}
-                    </li>
-                  ))}
+                {user &&
+                  Object.entries(user)
+                    .filter(
+                      ([key]) => !["id", "ownerId", "accessCode"].includes(key),
+                    )
+                    .map(([key, value]) => (
+                      <li key={key}>
+                        <strong>{key}: </strong>
+                        {isEditing ? (
+                          <input
+                            type="text"
+                            name={key}
+                            value={editedUser[key as keyof typeof editedUser]}
+                            onChange={handleInputChange}
+                          />
+                        ) : (
+                          <span>{value}</span>
+                        )}
+                      </li>
+                    ))}
               </ul>
               {isEditing ? (
-                <Button className='submit-drop-down' text={'Submit'} onClick={handleSubmit} />
+                <Button
+                  className="submit-drop-down"
+                  text={"Submit"}
+                  onClick={handleSubmit}
+                />
               ) : (
-                <Button className='submit-drop-down' text={'Edit'} onClick={handleEditClick} />
+                <Button
+                  className="submit-drop-down"
+                  text={"Edit"}
+                  onClick={handleEditClick}
+                />
               )}
             </div>
           )}

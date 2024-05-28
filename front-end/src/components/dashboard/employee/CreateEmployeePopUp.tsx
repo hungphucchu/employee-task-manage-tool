@@ -1,7 +1,7 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import EmployeeForm from './EmployeeForm';
-import Popup from '../../common/PopUp';
+import React from "react";
+import { useState, useEffect } from "react";
+import EmployeeForm from "./EmployeeForm";
+import Popup from "../../common/PopUp";
 
 interface CreateEmployeePopupProps {
   isOpen: boolean;
@@ -9,7 +9,11 @@ interface CreateEmployeePopupProps {
   onNewEmployeeAdded: () => void;
 }
 
-const CreateEmployeePopup: React.FC<CreateEmployeePopupProps> = ({ isOpen, onClose, onNewEmployeeAdded }) => {
+const CreateEmployeePopup: React.FC<CreateEmployeePopupProps> = ({
+  isOpen,
+  onClose,
+  onNewEmployeeAdded,
+}) => {
   const [completeCreate, setCompleteCreate] = useState(false);
 
   useEffect(() => {
@@ -26,11 +30,15 @@ const CreateEmployeePopup: React.FC<CreateEmployeePopupProps> = ({ isOpen, onClo
 
   return (
     <Popup>
-        {
-          completeCreate ? 
+      {completeCreate ? (
         <p>Create the new employee successfully</p>
-        :
-        <EmployeeForm onClose={onClose} isOpen={isOpen} onCompleteCreate={() => setCompleteCreate(true)}/>}
+      ) : (
+        <EmployeeForm
+          onClose={onClose}
+          isOpen={isOpen}
+          onCompleteCreate={() => setCompleteCreate(true)}
+        />
+      )}
     </Popup>
   );
 };

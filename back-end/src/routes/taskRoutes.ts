@@ -1,12 +1,27 @@
-import { Router } from 'express';
-import { taskController } from '../controller/taskController';
-import { authenticateMiddleware } from '../middleware/authentication';
+import { Router } from "express";
+import { taskController } from "../controller/taskController";
+import { authenticateMiddleware } from "../middleware/authentication";
 const router = Router();
 
-
-router.post('/',authenticateMiddleware.authenticateToken, taskController.createTask);
-router.post('/criteria',authenticateMiddleware.authenticateToken, taskController.getAllTaskByCriteria);
-router.delete('/',authenticateMiddleware.authenticateToken, taskController.deleteTask);
-router.put('/',authenticateMiddleware.authenticateToken, taskController.editTask);
+router.post(
+  "/",
+  authenticateMiddleware.authenticateToken,
+  taskController.createTask,
+);
+router.post(
+  "/criteria",
+  authenticateMiddleware.authenticateToken,
+  taskController.getAllTaskByCriteria,
+);
+router.delete(
+  "/",
+  authenticateMiddleware.authenticateToken,
+  taskController.deleteTask,
+);
+router.put(
+  "/",
+  authenticateMiddleware.authenticateToken,
+  taskController.editTask,
+);
 
 export default router;

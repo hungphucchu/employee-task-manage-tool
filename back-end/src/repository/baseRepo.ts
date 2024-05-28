@@ -1,7 +1,16 @@
-import { set, ref, get, query, orderByChild, equalTo, push, remove, update } from "firebase/database";
+import {
+  set,
+  ref,
+  get,
+  query,
+  orderByChild,
+  equalTo,
+  push,
+  remove,
+  update,
+} from "firebase/database";
 import { database } from "./firebase";
 import { BaseWithKey } from "../dto/common.dto";
-
 
 class BaseRepo<T> {
   private readonly tableName;
@@ -10,7 +19,10 @@ class BaseRepo<T> {
     this.tableName = tableName;
   }
 
-  getItemsByCriteria = async <U extends T & BaseWithKey>(criteria: Partial<U>, matchAll: boolean = true): Promise<U[]> => {
+  getItemsByCriteria = async <U extends T & BaseWithKey>(
+    criteria: Partial<U>,
+    matchAll: boolean = true,
+  ): Promise<U[]> => {
     const dbRef = ref(database, this.tableName);
     const items: U[] = [];
 
@@ -19,7 +31,7 @@ class BaseRepo<T> {
       const itemQuery = query(dbRef, orderByChild(key), equalTo(value));
       const snapshot = await get(itemQuery);
 
-      snapshot.forEach(childSnapshot => {
+      snapshot.forEach((childSnapshot) => {
         const item = childSnapshot.val() as U;
         items.push({ ...item, id: childSnapshot.key as string });
       });
@@ -27,7 +39,7 @@ class BaseRepo<T> {
     }
 
     const snapshot = await get(dbRef);
-    snapshot.forEach(childSnapshot => {
+    snapshot.forEach((childSnapshot) => {
       const item = childSnapshot.val() as U;
       let matches = matchAll;
 
@@ -64,25 +76,31 @@ class BaseRepo<T> {
     return items;
   };
 
-  getItem = async <U extends T & BaseWithKey>(itemId: string): Promise<U | null> => {
+  getItem = async <U extends T & BaseWithKey>(
+    itemId: string,
+  ): Promise<U | null> => {
     const itemRef = ref(database, `${this.tableName}/${itemId}`);
     const snapshot = await get(itemRef);
 
     if (snapshot.exists()) {
-      return { ...snapshot.val() as U, id: snapshot.key as string };
+      return { ...(snapshot.val() as U), id: snapshot.key as string };
     } else {
       return null;
     }
   };
 
-  createItem = async (item: T): Promise<{ success: boolean, id?: string, item?: T }> => {
+  createItem = async (
+    item: T,
+  ): Promise<{ success: boolean; id?: string; item?: T }> => {
     const itemsRef = ref(database, this.tableName);
     const newItemRef = push(itemsRef);
     const itemId = newItemRef.key;
 
     await set(newItemRef, item);
 
-    return itemId ? { success: true, id: itemId, item: item } : { success: false };
+    return itemId
+      ? { success: true, id: itemId, item: item }
+      : { success: false };
   };
 
   deleteItem = async (itemId: string): Promise<{ success: boolean }> => {
@@ -93,22 +111,28 @@ class BaseRepo<T> {
     return { success: true };
   };
 
-  
-  updateItem = async (itemId: string, updatedData: Partial<T>): Promise<boolean> => {
+  updateItem = async (
+    itemId: string,
+    updatedData: Partial<T>,
+  ): Promise<boolean> => {
     const itemRef = ref(database, `${this.tableName}/${itemId}`);
     try {
       await update(itemRef, updatedData);
       console.log(`Item with ID: ${itemId} updated successfully`);
-      return true; 
+      return true;
     } catch (error) {
       console.error("Error updating item:", error);
-      return false; 
+      return false;
     }
   };
 
-  updateItemWithCriteria = async <U extends T & BaseWithKey>(searchData: Partial<U>, updatedData: Partial<T>, matchAll: boolean = true): Promise<boolean> => {
+  updateItemWithCriteria = async <U extends T & BaseWithKey>(
+    searchData: Partial<U>,
+    updatedData: Partial<T>,
+    matchAll: boolean = true,
+  ): Promise<boolean> => {
     const items = await this.getItemsByCriteria(searchData, matchAll);
-    let result = false
+    let result = false;
     if (items.length > 0) {
       result = await this.updateItem(items[0].id, updatedData);
     }

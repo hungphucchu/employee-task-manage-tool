@@ -1,5 +1,5 @@
-import React, { createContext, useState, useContext, ReactNode } from 'react';
-import { Employee } from '../../dto/common.dto';
+import React, { createContext, useState, useContext, ReactNode } from "react";
+import { Employee } from "../../dto/common.dto";
 
 interface EmployeeContextType {
   employees: Employee[];
@@ -11,17 +11,23 @@ interface EmployeeProviderProps {
   children: ReactNode;
 }
 
-const EmployeeContext = createContext<EmployeeContextType | undefined>(undefined);
+const EmployeeContext = createContext<EmployeeContextType | undefined>(
+  undefined,
+);
 
 export const useEmployeeContext = () => {
   const context = useContext(EmployeeContext);
   if (!context) {
-    throw new Error('useEmployeeContext must be used within an EmployeeProvider');
+    throw new Error(
+      "useEmployeeContext must be used within an EmployeeProvider",
+    );
   }
   return context;
 };
 
-export const EmployeeProvider: React.FC<EmployeeProviderProps> = ({ children }) => {
+export const EmployeeProvider: React.FC<EmployeeProviderProps> = ({
+  children,
+}) => {
   const [employees, setEmployees] = useState<Employee[]>([]);
 
   const addEmployee = (employees: Employee[]) => {
@@ -29,12 +35,17 @@ export const EmployeeProvider: React.FC<EmployeeProviderProps> = ({ children }) 
   };
 
   const updateEmployee = (updatedEmployee: Employee) => {
-    setEmployees(employees.map(emp => (emp.id === updatedEmployee.id ? updatedEmployee : emp)));
+    setEmployees(
+      employees.map((emp) =>
+        emp.id === updatedEmployee.id ? updatedEmployee : emp,
+      ),
+    );
   };
 
-
   return (
-    <EmployeeContext.Provider value={{ employees, addEmployee, updateEmployee}}>
+    <EmployeeContext.Provider
+      value={{ employees, addEmployee, updateEmployee }}
+    >
       {children}
     </EmployeeContext.Provider>
   );

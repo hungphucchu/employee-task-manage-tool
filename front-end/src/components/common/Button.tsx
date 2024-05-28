@@ -1,5 +1,5 @@
-import React from 'react';
-import '../../css/dashboard/Button.css';
+import React from "react";
+import "../../css/dashboard/Button.css";
 
 interface ButtonProps {
   className: string;

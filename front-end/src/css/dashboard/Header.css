@@ -27,14 +27,14 @@
 
 .header .notification-icon::before,
 .header .profile-icon::before {
-  font-family: 'Font Awesome 5 Free'; /* Ensure Font Awesome is included */
+  font-family: "Font Awesome 5 Free"; /* Ensure Font Awesome is included */
   font-weight: 900;
   font-size: 18px;
   color: #000;
 }
 
 .header .notification-icon::before {
-  content: '\f0f3'; /* Font Awesome bell icon */
+  content: "\f0f3"; /* Font Awesome bell icon */
 }
 
 .header .notification-icon .badge {
@@ -53,7 +53,7 @@
 }
 
 .header .profile-icon::before {
-  content: '\f007'; /* Font Awesome user icon */
+  content: "\f007"; /* Font Awesome user icon */
 }
 
 .dropdown {
@@ -66,7 +66,9 @@
   width: 250px;
   /* Position dropdown dynamically to ensure it stays within the visible area */
   top: calc(100% + 10px); /* Position dropdown below the profile icon */
-  right: calc(100% + 20px); /* Position dropdown to the left of the profile icon */
+  right: calc(
+    100% + 20px
+  ); /* Position dropdown to the left of the profile icon */
 }
 
 .close-drop-down {
@@ -80,7 +82,9 @@
 
 .header .notification-icon + .profile-icon .dropdown {
   top: calc(100% + 10px); /* Position dropdown below the profile icon */
-  right: calc(100% + 20px); /* Position dropdown to the left of the profile icon */
+  right: calc(
+    100% + 20px
+  ); /* Position dropdown to the left of the profile icon */
 }
 
 @media only screen and (max-height: 600px) {

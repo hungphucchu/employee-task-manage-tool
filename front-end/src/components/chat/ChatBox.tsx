@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import '../../css/chat/ChatBox.css';
+import React, { useState } from "react";
+import "../../css/chat/ChatBox.css";
 
 export interface Message {
   text: string;
@@ -12,13 +12,17 @@ interface ChatBoxProps {
   onSendMessage: (message: string) => void;
 }
 
-const ChatBox: React.FC<ChatBoxProps> = ({ selectedUser, messages, onSendMessage }) => {
-  const [newMessage, setNewMessage] = useState<string>('');
+const ChatBox: React.FC<ChatBoxProps> = ({
+  selectedUser,
+  messages,
+  onSendMessage,
+}) => {
+  const [newMessage, setNewMessage] = useState<string>("");
 
   const handleSend = () => {
-    if (newMessage.trim() !== '') {
+    if (newMessage.trim() !== "") {
       onSendMessage(newMessage);
-      setNewMessage('');
+      setNewMessage("");
     }
   };
 
@@ -31,7 +35,10 @@ const ChatBox: React.FC<ChatBoxProps> = ({ selectedUser, messages, onSendMessage
       <div className="chat-header">{selectedUser.name}</div>
       <div className="messages">
         {messages.map((message, index) => (
-          <div key={index} className={`message ${message.sender === 'You' ? 'you' : 'user'}`}>
+          <div
+            key={index}
+            className={`message ${message.sender === "You" ? "you" : "user"}`}
+          >
             <strong>{message.sender}: </strong> {message.text}
           </div>
         ))}

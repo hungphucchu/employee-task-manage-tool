@@ -1,0 +1,14 @@
+{
+  "name": "employee-task-manage-tool",
+  "version": "1.0.0",
+  "scripts": {
+    "format": "prettier --write .",
+    "start:app": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
+    "start:frontend": "cd front-end && npm run start",
+    "start:backend": "cd back-end && npm run dev"
+  },
+  "devDependencies": {
+    "concurrently": "^6.2.0",
+    "prettier": "^3.2.5"
+  }
+}

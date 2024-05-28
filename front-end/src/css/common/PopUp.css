@@ -54,7 +54,8 @@
   border-radius: 4px;
 }
 
-.create-button, .edit-button {
+.create-button,
+.edit-button {
   background: blue;
   color: white;
   padding: 10px 20px;

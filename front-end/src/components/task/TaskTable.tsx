@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import '../../css/task/TaskTable.css';
-import TaskForm from './TaskForm';
-import Popup from '../common/PopUp';
-import { useUserContext } from '../context/UserContext';
-import ApiHelper from '../../helper/api-helper';
-import { Task } from '../../dto/common.dto';
+import React, { useEffect, useState } from "react";
+import "../../css/task/TaskTable.css";
+import TaskForm from "./TaskForm";
+import Popup from "../common/PopUp";
+import { useUserContext } from "../context/UserContext";
+import ApiHelper from "../../helper/api-helper";
+import { Task } from "../../dto/common.dto";
 
 const TaskTable: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -15,13 +15,15 @@ const TaskTable: React.FC = () => {
 
   const fetchTasks = async () => {
     try {
-      const taskReq = !user?.employeeId ? { assigner: user?.username } : { assignee: user?.username };
+      const taskReq = !user?.employeeId
+        ? { assigner: user?.username }
+        : { assignee: user?.username };
       const taskRes = await ApiHelper.getAllTaskByCriteria(taskReq);
       if (taskRes.success && taskRes.tasks) {
         setTasks(taskRes.tasks);
       }
     } catch (error) {
-      console.error('Error fetching tasks:', error);
+      console.error("Error fetching tasks:", error);
     }
   };
 
@@ -32,9 +34,9 @@ const TaskTable: React.FC = () => {
   const handleDelete = async (id: string) => {
     try {
       await ApiHelper.deleteTask({ id });
-      setTasks(tasks.filter(task => task.id !== id));
+      setTasks(tasks.filter((task) => task.id !== id));
     } catch (error) {
-      console.error('Error deleting task:', error);
+      console.error("Error deleting task:", error);
     }
   };
 
@@ -51,17 +53,17 @@ const TaskTable: React.FC = () => {
   };
 
   const handleAssign = async (id: string) => {
-    const newAssignee = prompt('Enter new assignee');
+    const newAssignee = prompt("Enter new assignee");
     if (newAssignee) {
       try {
-        const updatedTask = tasks.find(task => task.id === id);
+        const updatedTask = tasks.find((task) => task.id === id);
         if (updatedTask) {
           updatedTask.assignee = newAssignee;
           await ApiHelper.editTask(updatedTask);
-          setTasks(tasks.map(task => (task.id === id ? updatedTask : task)));
+          setTasks(tasks.map((task) => (task.id === id ? updatedTask : task)));
         }
       } catch (error) {
-        console.error('Error assigning task:', error);
+        console.error("Error assigning task:", error);
       }
     }
   };
@@ -70,16 +72,19 @@ const TaskTable: React.FC = () => {
     try {
       if (isEdit) {
         await ApiHelper.editTask(task);
-        setTasks(tasks.map(t => (t.id === task.id ? task : t)));
+        setTasks(tasks.map((t) => (t.id === task.id ? task : t)));
       } else {
         const newTaskRes = await ApiHelper.createTask(task);
         if (newTaskRes && newTaskRes.success) {
-          setTasks(prevTasks => [...prevTasks, { ...task, id: newTaskRes.id }]);
+          setTasks((prevTasks) => [
+            ...prevTasks,
+            { ...task, id: newTaskRes.id },
+          ]);
         }
       }
       setIsPopupOpen(false);
     } catch (error) {
-      console.error('Error saving task:', error);
+      console.error("Error saving task:", error);
     }
   };
 
@@ -97,16 +102,22 @@ const TaskTable: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {tasks.map(task => (
+          {tasks.map((task) => (
             <tr key={task.id}>
               <td>{task.name}</td>
               <td>{task.assigner}</td>
               <td>{task.assignee}</td>
               <td>{task.status}</td>
               <td>
-                <button onClick={() => handleEdit({...task, id: task.id})}>Edit</button>
-                <button onClick={() => handleDelete(String(task.id))}>Delete</button>
-                <button onClick={() => handleAssign(String(task.id))}>Assign</button>
+                <button onClick={() => handleEdit({ ...task, id: task.id })}>
+                  Edit
+                </button>
+                <button onClick={() => handleDelete(String(task.id))}>
+                  Delete
+                </button>
+                <button onClick={() => handleAssign(String(task.id))}>
+                  Assign
+                </button>
               </td>
             </tr>
           ))}
@@ -114,7 +125,11 @@ const TaskTable: React.FC = () => {
       </table>
       {isPopupOpen && (
         <Popup>
-          <TaskForm task={currentTask} onSave={handleSave} onClose={() => setIsPopupOpen(false)} />
+          <TaskForm
+            task={currentTask}
+            onSave={handleSave}
+            onClose={() => setIsPopupOpen(false)}
+          />
         </Popup>
       )}
     </div>

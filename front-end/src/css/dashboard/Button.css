@@ -1,13 +1,12 @@
 /* src/css/Button.css */
 .button {
-    border: none;
-    padding: 10px 15px;
-    margin: 5px;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .button:hover {
-    opacity: 0.8;
-  }
-  
+  border: none;
+  padding: 10px 15px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.button:hover {
+  opacity: 0.8;
+}

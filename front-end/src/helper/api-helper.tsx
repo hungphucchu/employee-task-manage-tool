@@ -8,7 +8,7 @@ class ApiHelper {
   private static tasks_endpoint = process.env.REACT_APP_TASKS_ENDPOINT;
 
   static async callApi(url: string, method: string = "GET", data: any = null) {
-    const currentToken = localStorage.getItem('authToken') || "";
+    const currentToken = localStorage.getItem("authToken") || "";
     try {
       const config: AxiosRequestConfig = {
         method: method,
@@ -23,7 +23,7 @@ class ApiHelper {
       return response?.data ? response.data : response;
     } catch (error) {
       console.error("Error calling API: ", error);
-      return {successs: false, message: error}
+      return { successs: false, message: error };
     }
   }
 
@@ -118,7 +118,6 @@ class ApiHelper {
     }
   }
 
-
   static async editTask(task: Task) {
     try {
       const url = `${ApiHelper.backend_url}/${ApiHelper.tasks_endpoint}`;
@@ -164,8 +163,11 @@ class ApiHelper {
       const url = `${ApiHelper.backend_url}/${ApiHelper.employees_endpoint}`;
       return await ApiHelper.callApi(url, "DELETE", employeeKey);
     } catch (error) {
-      console.error(`Error deleting employee with id of ${employeeKey.id}:`, error);
-      return { success: false, message: error}
+      console.error(
+        `Error deleting employee with id of ${employeeKey.id}:`,
+        error,
+      );
+      return { success: false, message: error };
     }
   }
 
@@ -175,7 +177,7 @@ class ApiHelper {
       return await ApiHelper.callApi(url, "DELETE", task);
     } catch (error) {
       console.error(`Error deleting employee with id of ${task.id}:`, error);
-      return { success: false, message: error}
+      return { success: false, message: error };
     }
   }
 
