@@ -70,8 +70,6 @@ class ApiHelper {
     try {
       const url = `${ApiHelper.backend_url}/${ApiHelper.users_endpoint}/validate/token`;
       const tokenRes = await ApiHelper.callApi(url, "GET");
-      console.log("tokenRes = ")
-      console.log(tokenRes)
       return tokenRes;
     } catch (error) {
       console.error("Error validating token:", error);

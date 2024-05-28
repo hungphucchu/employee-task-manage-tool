@@ -11,9 +11,6 @@ const Dashboard: React.FC = () => {
   const [activeComponent, setActiveComponent] = useState<string>('manage-employee');
   const {user} = useUserContext();
 
-  console.log("user dashboard = ");
-  console.log(user);
-
   const renderContent = () => {
     switch (activeComponent) {
       case 'manage-employee':

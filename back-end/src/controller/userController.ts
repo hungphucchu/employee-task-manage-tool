@@ -19,8 +19,6 @@ class UserController {
 
     createNewUserAccount = async (req: Request, res: Response): Promise<void> => {
         const user: User = req.body;
-        console.log("createNewUserAccount")
-        console.log(user)
         if (user) {
             const newUserAccountRes = await userService.createNewUser(user);
             if (newUserAccountRes.success) res.status(201).json(newUserAccountRes);
@@ -32,8 +30,6 @@ class UserController {
 
     validateAccessCode = async (req: Request, res: Response): Promise<void> => {
         const { email, accessCode } = req.body;
-        console.log(`validateAccessCode ${email} and ${accessCode}`)
-        console.log(req.body)
         if (email && accessCode) {
             const validateAccessCodeRes = await userService.validateUser({ email, accessCode });
             if (validateAccessCodeRes.success) res.status(201).json(validateAccessCodeRes);
@@ -45,8 +41,6 @@ class UserController {
 
     validateUsernameAndPassword = async (req: Request, res: Response): Promise<void> => {
         const { username, password } = req.body;
-        console.log(`validateUsernameAndPassword ${username} and ${password}`)
-        console.log(req.body)
         if (username && password) {
             const validateSuccessRes = await userService.validateUser({ username, password });
             if (validateSuccessRes.success) res.status(201).json(validateSuccessRes);
@@ -59,10 +53,7 @@ class UserController {
     validateToken =  async (req: CustomRequest, res: Response): Promise<void> => { 
         if (req.user) {
             const {username} = req.user;
-            // console.log("username = " + username)
             const validateTokenRes = await userService.getUserByCriteria({username}, true);
-            // console.log("validateTokenRes in validateToken = ")
-            // console.log(validateTokenRes)
             if (validateTokenRes?.success) res.status(200).json(validateTokenRes);
             else  res.status(500).json(validateTokenRes);
         } else {
@@ -91,11 +82,7 @@ class UserController {
         const user: User = req.body;
         try{
             if (user.id){
-                // console.log("user in req = ")
-                // console.log(user)
                 const getUserRes = await userService.getItem(user.id)
-                // console.log("getUserRes in bakc end  = ");
-                // console.log(getUserRes)
                 if (getUserRes) res.status(200).json({success: true, user: getUserRes, message: "Complete getting user"});
                 else res.status(500).json({ success: false, message: "Can not get user" });
             }
@@ -109,8 +96,6 @@ class UserController {
     async editUserWithCriteria(req: Request, res: Response): Promise<void> {
         const user: User = req.body;
         const getUserRes = await userService.getUserByCriteria(user,false);
-        // console.log("getUserRes = ");
-        // console.log(getUserRes);
         try {
             if (getUserRes?.user?.id){
                 let updateUser = {...getUserRes?.user,...user};

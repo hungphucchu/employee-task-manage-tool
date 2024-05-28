@@ -3,7 +3,7 @@ import { Employee } from '../../dto/common.dto';
 
 interface EmployeeContextType {
   employees: Employee[];
-  addEmployee: (employee: Employee) => void;
+  addEmployee: (employee: Employee[]) => void;
   updateEmployee: (employee: Employee) => void;
 }
 
@@ -24,8 +24,8 @@ export const useEmployeeContext = () => {
 export const EmployeeProvider: React.FC<EmployeeProviderProps> = ({ children }) => {
   const [employees, setEmployees] = useState<Employee[]>([]);
 
-  const addEmployee = (employee: Employee) => {
-    setEmployees([...employees, employee]);
+  const addEmployee = (employees: Employee[]) => {
+    setEmployees(employees);
   };
 
   const updateEmployee = (updatedEmployee: Employee) => {

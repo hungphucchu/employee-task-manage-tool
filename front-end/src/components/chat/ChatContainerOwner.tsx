@@ -15,12 +15,7 @@ const ChatContainerOwner: React.FC = () => {
   const [messages, setMessages] = useState<{ [key: string]: Message[] }>({});
   const { employees } = useEmployeeContext();
   const { user } = useUserContext();
-
-  // console.log("selectedUser = ");
-  // console.log(selectedUser);
-  // console.log("messages = ");
-  // console.log(messages);
-
+  
   useEffect(() => {
     if (user?.id) {
       socket.emit('joinRoom', user.id);
@@ -35,7 +30,6 @@ const ChatContainerOwner: React.FC = () => {
     setMessages(initialMessages);
 
     socket.on('userToUserMessage', (data) => {
-      // console.log("Received data in owner: ", data);
       const { senderId, message, username } = data;
       setMessages((prevMessages) => ({
         ...prevMessages,

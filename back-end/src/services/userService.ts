@@ -117,22 +117,17 @@ class UserService extends BaseService<User>{
         const users = await userRepo.getItemsByCriteria({username: user.username}, true);
         if (users.length === 0) return false;
         if (user.password && users[0]?.password) valid = await utils.comparePassword(user?.password, users[0]?.password)
-        console.log("users[0] in valid user = ");
-        console.log(users[0]);
         userRes = {...user, employeeId: users[0].employeeId, id: users[0].id};
       /**
        * if it is role owner then create user account with ownerId then create record in owner
        *  */ 
       }else if (user.accessCode && user.email){
-        console.log(`validateUser with ${user.accessCode} and ${user.email}`)
         const owner = await ownerRepo.createItem({ email: user.email});
         // auto create username and password for user
         userName = user.email.split("@")[0];
         const password = utils.generateRandomPassword();
         const hashedPassword = await utils.hashPassword(password);
         const ownerAccount = await userRepo.getItemsByCriteria({accessCode: user.accessCode, email: user.email}, true);
-        console.log("ownerAccount = ")
-        console.log(ownerAccount)
         if (ownerAccount && ownerAccount.length > 0){
           const newUserRes = await userRepo.updateItemWithCriteria(user,{ username: userName, password: hashedPassword, ownerId: owner.id, accessCode:""})
           if (newUserRes && UserService.smtpUser){
@@ -149,10 +144,7 @@ class UserService extends BaseService<User>{
         console.log(`Complete creating username and password for user with email ${user.email}`);
       }
       const token = authenticateMiddleware.generateAccessToken({username: userName })
-      // console.log("token = ");
-      // console.log(token)
-      // console.log("userRes = ")
-      // console.log(userRes)
+
       return { token: token.toString(), success: valid, message: "Validating user complete", user: userRes};
     } catch (error) {
       console.error(`Error validating user: ${error}`);

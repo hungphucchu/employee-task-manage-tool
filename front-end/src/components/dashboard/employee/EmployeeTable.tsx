@@ -15,7 +15,7 @@ interface EmployeeTableProps {
 const EmployeeTable: React.FC<EmployeeTableProps> = ({ employeeListUpdate, onEmployeeListUpdate }: EmployeeTableProps) => {
   const [employeeList, setEmployeeList] = useState<Employee[]>([]);
   const { user } = useUserContext();
-  const { addEmployee } = useEmployeeContext(); // Use EmployeeContext
+  const { addEmployee } = useEmployeeContext(); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,10 +27,9 @@ const EmployeeTable: React.FC<EmployeeTableProps> = ({ employeeListUpdate, onEmp
       const employees = await ApiHelper.getAllEmployee();
       setEmployeeList(employees);
 
+    
       // Add employees to the context
-      employees.forEach((employee: Employee) => {
-        addEmployee(employee);
-      });
+      addEmployee(employees);
     };
     getEmployeeList();
   }, [employeeListUpdate]);

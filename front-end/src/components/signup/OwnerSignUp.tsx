@@ -27,10 +27,7 @@ const OwnerSignUp = () => {
     console.log('Access code validation result:', validateAccessCode?.success);
     
     if (validateAccessCode?.success) {
-      console.log("validateAccessCode?.user = ")
-      console.log(validateAccessCode?.user)
       updateUser(validateAccessCode?.user);
-      console.log("validateAccessCode.token = " + validateAccessCode.token)
       localStorage.setItem('authToken', validateAccessCode.token);
       navigate('/dashboard');
     }

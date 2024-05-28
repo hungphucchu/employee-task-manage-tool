@@ -95,16 +95,16 @@ class BaseRepo<T> {
     return { success: true };
   };
 
-  // Update an item by its ID
+  
   updateItem = async (itemId: string, updatedData: Partial<T>): Promise<boolean> => {
     const itemRef = ref(database, `${this.tableName}/${itemId}`);
     try {
       await update(itemRef, updatedData);
       console.log(`Item with ID: ${itemId} updated successfully`);
-      return true; // Return true if the update is successful
+      return true; 
     } catch (error) {
       console.error("Error updating item:", error);
-      return false; // Return false in case of an error
+      return false; 
     }
   };
 

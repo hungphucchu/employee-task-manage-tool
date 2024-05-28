@@ -9,18 +9,17 @@ const socket: Socket = io('http://localhost:3001');
 
 const ChatContainerEmployee: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
-  const [owner, setOwner] = useState<any>({}); // Modify this type as per your User interface
+  const [owner, setOwner] = useState<any>({});
   const { user } = useUserContext();
 
 
   useEffect(() => {
-    const userId = user?.id; // Replace with the actual user ID
+    const userId = user?.id; 
     if (userId) {
       socket.emit('joinRoom', userId);
     }
 
     socket.on('userToUserMessage', (data) => {
-      console.log("Received data in employee: ", data);
       const { senderId, message, username } = data;
       setMessages((prevMessages) => [...prevMessages, { sender: username, text: message.text }]);
     });

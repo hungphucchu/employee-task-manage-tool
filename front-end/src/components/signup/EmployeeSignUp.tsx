@@ -18,8 +18,6 @@ const EmployeeSignUp = () => {
     try{
       if (code){
         const editUserWithCriteriaRes = await ApiHelper.editUserWithCriteria({...newUser, accessString: code});
-      console.log("editUserWithCriteriaRes = ")
-      console.log(editUserWithCriteriaRes)
       if (editUserWithCriteriaRes?.success) {
         navigate('/user/login');
       }else{

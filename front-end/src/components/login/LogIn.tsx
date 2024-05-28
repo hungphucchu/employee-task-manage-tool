@@ -12,17 +12,13 @@ const LogIn = () => {
   const navigate = useNavigate();
 
   
-  const { updateUser } = useUserContext(); // Access the user context
+  const { updateUser } = useUserContext(); 
 
   useEffect(() => {
     const validateToken = async () => {
       if (localStorage.getItem('authToken')){
         const validTokenRes = await ApiHelper.validateToken();
-        console.log("validTokenRes = ")
-          console.log(validTokenRes)
         if (validTokenRes && validTokenRes.success){
-          console.log("validTokenRes?.user = ")
-          console.log(validTokenRes?.user)
           updateUser(validTokenRes?.user);
           navigate('/dashboard');
         }else localStorage.removeItem('authToken')
@@ -34,15 +30,10 @@ const LogIn = () => {
   const validateLogIn = async (user: User) => {
     try {
       const validateUsername = await ApiHelper.validateUsernameAndPassword(user);
-      console.log('Username and password validation result:', validateUsername?.success);
-      console.log("validateUsername = ");
-      console.log(validateUsername);
       if (validateUsername?.success) {
         updateUser(validateUsername?.user);
-        console.log("validateUsername?.user = ")
-        console.log(validateUsername?.user)
         const token = validateUsername?.token;
-        localStorage.setItem('authToken', token); // Store the token in local storage
+        localStorage.setItem('authToken', token); 
         navigate('/dashboard');
       } else {
         console.error('Validation failed:', validateUsername?.message);

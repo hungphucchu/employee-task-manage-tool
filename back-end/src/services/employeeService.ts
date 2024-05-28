@@ -14,7 +14,6 @@ class EmployeeService extends BaseService<Employee> {
 
   setupEmployeeAccount = async (employee: Employee): Promise<any> => {
       try{
-        console.log("setupEmployeeAccount ")
           // check if employee email already created
           const userExistRes = await userService.validateUserAlreadyExists({email: employee.email});
 
@@ -24,12 +23,8 @@ class EmployeeService extends BaseService<Employee> {
           const newEmployee = await employeeService.createItem(employee);
           const accessString = utils.generateRandomString(8);
 
-          // console.log("newEmployee = ")
-          // console.log(newEmployee)
           if (newEmployee?.id){
               const employeeUserAccountRes = await userService.createItem({ email: employee.email, employeeId: newEmployee?.id, accessString, ownerId: employee.ownerId});
-              console.log("employeeUserAccountRes = ")
-              console.log(employeeUserAccountRes)
               if (employeeUserAccountRes.success && employeeUserAccountRes?.id){
                   await userService.updateItem(employeeUserAccountRes?.id, {employeeId: newEmployee.id});
                   await employeeService.updateItem(newEmployee?.id, {...newEmployee, userId: employeeUserAccountRes.id});
