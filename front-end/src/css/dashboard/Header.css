@@ -1,0 +1,104 @@
+.header {
+  background: #fff;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; /* Ensure items are vertically centered */
+  border-bottom: 1px solid #ddd;
+}
+
+.header .header-right {
+  display: flex;
+  align-items: center;
+}
+
+.header .notification-icon,
+.header .profile-icon {
+  width: 30px;
+  height: 30px;
+  margin-left: 20px;
+  border-radius: 50%;
+  position: relative;
+  background: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header .notification-icon::before,
+.header .profile-icon::before {
+  font-family: 'Font Awesome 5 Free'; /* Ensure Font Awesome is included */
+  font-weight: 900;
+  font-size: 18px;
+  color: #000;
+}
+
+.header .notification-icon::before {
+  content: '\f0f3'; /* Font Awesome bell icon */
+}
+
+.header .notification-icon .badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+}
+
+.header .profile-icon::before {
+  content: '\f007'; /* Font Awesome user icon */
+}
+
+.dropdown {
+  position: absolute;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 15px;
+  z-index: 1000;
+  width: 250px;
+  /* Position dropdown dynamically to ensure it stays within the visible area */
+  top: calc(100% + 10px); /* Position dropdown below the profile icon */
+  right: calc(100% + 20px); /* Position dropdown to the left of the profile icon */
+}
+
+.close-drop-down {
+  position: absolute; /* Position the close button absolutely within the dropdown */
+  top: 5px; /* Adjust top position as needed */
+  right: 5px; /* Adjust right position as needed */
+  background: none; /* Remove background */
+  border: none; /* Remove border */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+.header .notification-icon + .profile-icon .dropdown {
+  top: calc(100% + 10px); /* Position dropdown below the profile icon */
+  right: calc(100% + 20px); /* Position dropdown to the left of the profile icon */
+}
+
+@media only screen and (max-height: 600px) {
+  .dropdown {
+    top: -170px; /* Adjust position for smaller screens */
+  }
+}
+
+.dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown li {
+  margin-bottom: 5px;
+}
+
+.dropdown li strong {
+  font-weight: bold;
+}

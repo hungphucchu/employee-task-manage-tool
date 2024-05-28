@@ -1,0 +1,25 @@
+/* src/css/MainContent.css */
+.main-content {
+  padding: 20px;
+}
+
+.main-content h2 {
+  margin-bottom: 20px;
+}
+
+.create-employee-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.filter-input {
+  margin-left: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}

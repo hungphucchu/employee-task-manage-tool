@@ -1,0 +1,16 @@
+/* src/css/EmployeeRow.css */
+.employee-row .status {
+  background: #e0ffe0;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.edit-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.delete-button {
+  background-color: #ff4d4d;
+  color: white;
+}
