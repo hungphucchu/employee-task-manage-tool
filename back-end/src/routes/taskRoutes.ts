@@ -5,7 +5,7 @@ const router = Router();
 
 
 router.post('/',authenticateMiddleware.authenticateToken, taskController.createTask);
-router.post('/',authenticateMiddleware.authenticateToken, taskController.getAllTaskByCriteria);
+router.post('/criteria',authenticateMiddleware.authenticateToken, taskController.getAllTaskByCriteria);
 router.delete('/',authenticateMiddleware.authenticateToken, taskController.deleteTask);
 router.put('/',authenticateMiddleware.authenticateToken, taskController.editTask);
 

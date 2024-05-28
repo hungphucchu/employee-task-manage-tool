@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { BaseWithKey, Employee, User } from "../dto/common.dto";
+import { BaseWithKey, Employee, Task, User } from "../dto/common.dto";
 
 class ApiHelper {
   private static backend_url = process.env.REACT_APP_BACKEND_URL;
@@ -108,6 +108,27 @@ class ApiHelper {
     }
   }
 
+  static async createTask(task: Task) {
+    try {
+      const url = `${ApiHelper.backend_url}/${ApiHelper.tasks_endpoint}`;
+      return await ApiHelper.callApi(url, "POST", task);
+    } catch (error) {
+      console.error("Error creating new task:", error);
+      throw new Error("Error creating new task");
+    }
+  }
+
+
+  static async editTask(task: Task) {
+    try {
+      const url = `${ApiHelper.backend_url}/${ApiHelper.tasks_endpoint}`;
+      return await ApiHelper.callApi(url, "PUT", task);
+    } catch (error) {
+      console.error("Error editing task:", error);
+      throw new Error("Error editing task");
+    }
+  }
+
   static async editUser(user: User) {
     try {
       const url = `${ApiHelper.backend_url}/${ApiHelper.users_endpoint}`;
@@ -148,6 +169,16 @@ class ApiHelper {
     }
   }
 
+  static async deleteTask(task: Task) {
+    try {
+      const url = `${ApiHelper.backend_url}/${ApiHelper.tasks_endpoint}`;
+      return await ApiHelper.callApi(url, "DELETE", task);
+    } catch (error) {
+      console.error(`Error deleting employee with id of ${task.id}:`, error);
+      return { success: false, message: error}
+    }
+  }
+
   static async getAllEmployeeByCriteria(employee: Employee) {
     try {
       const url = `${ApiHelper.backend_url}/${ApiHelper.employees_endpoint}/criteria`;
@@ -158,13 +189,13 @@ class ApiHelper {
     }
   }
 
-  static async getAllTask() {
+  static async getAllTaskByCriteria(task: Task) {
     try {
-      const url = `${ApiHelper.backend_url}/${ApiHelper.employees_endpoint}`;
-      return await ApiHelper.callApi(url, "GET");
+      const url = `${ApiHelper.backend_url}/${ApiHelper.tasks_endpoint}/criteria`;
+      return await ApiHelper.callApi(url, "POST", task);
     } catch (error) {
-      console.error("Error getting all employees:", error);
-      throw new Error("Error getting all employees");
+      console.error("Error getting all tasks:", error);
+      throw new Error("Error getting all tasks");
     }
   }
 }

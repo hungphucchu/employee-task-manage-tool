@@ -75,14 +75,14 @@ class BaseRepo<T> {
     }
   };
 
-  createItem = async (item: T): Promise<{ success: boolean, id?: string }> => {
+  createItem = async (item: T): Promise<{ success: boolean, id?: string, item?: T }> => {
     const itemsRef = ref(database, this.tableName);
     const newItemRef = push(itemsRef);
     const itemId = newItemRef.key;
 
     await set(newItemRef, item);
 
-    return itemId ? { success: true, id: itemId } : { success: false };
+    return itemId ? { success: true, id: itemId, item: item } : { success: false };
   };
 
   deleteItem = async (itemId: string): Promise<{ success: boolean }> => {

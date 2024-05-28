@@ -6,6 +6,7 @@ import '../../css/dashboard/Dashboard.css';
 import { useUserContext } from '../context/UserContext';
 import ChatContainerEmployee from '../chat/ChatContainerEmployee';
 import ChatContainerOwner from '../chat/ChatContainerOwner';
+import TaskTable from '../task/TaskTable';
 
 const Dashboard: React.FC = () => {
   const [activeComponent, setActiveComponent] = useState<string>('manage-employee');
@@ -16,11 +17,11 @@ const Dashboard: React.FC = () => {
       case 'manage-employee':
         return  !user?.employeeId && <MainContent />;
       case 'manage-task':
-        return <div>Manage Task Component</div>;
+        return <TaskTable />;
       case 'message':
         return !user?.employeeId ? <ChatContainerOwner /> : <ChatContainerEmployee />;
       default:
-        return !user?.employeeId ? <MainContent /> : <div>Manage Task Component</div>;
+        return !user?.employeeId ? <TaskTable /> :  <MainContent /> ;
     }
   };
 

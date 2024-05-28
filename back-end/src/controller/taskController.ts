@@ -8,7 +8,7 @@ class TaskController {
 
     async getAllTaskByCriteria(req: Request, res: Response): Promise<void> {  
         try {
-            const tasks = await taskService.getAllTaskByCriteria(req.body, true)
+            const tasks = await taskService.getAllTaskByCriteria(req.body, false)
             if (tasks) {
                 res.status(200).json(tasks);
             } else {
@@ -38,12 +38,15 @@ class TaskController {
     async deleteTask(req: Request, res: Response): Promise<void> {
         const task: Task = req.body;
         try {
-            const deleteEmployeeResult = await taskService.deleteItem(task.id);
-            if (deleteEmployeeResult.success) {
-                res.status(200).json({ success: true, message: 'Task deleted successfully' });
-            } else {
-                res.status(500).json({ success: false, message: 'Can not delete task' });
+            if (task.id){
+                const deleteEmployeeResult = await taskService.deleteItem(task.id);
+                if (deleteEmployeeResult.success) {
+                    res.status(200).json({ success: true, message: 'Task deleted successfully' });
+                } else {
+                    res.status(500).json({ success: false, message: 'Can not delete task' });
+                }
             }
+           
         } catch (error) {
             console.error('Error deleting employee:', error);
             res.status(500).json({ success: false, message: error });

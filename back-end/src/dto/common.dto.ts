@@ -33,9 +33,9 @@ export interface EmployeeWithId extends Employee, BaseWithKey{}
 
 
 export interface Task{
-    id: string;
-    name: string;
-    asigner: string;
-    asignee: string;
-    status: string;
+    id?: string;
+    name?: string;
+    assigner?: string;
+    assignee?: string;
+    status?: string;
 }

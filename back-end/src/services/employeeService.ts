@@ -48,7 +48,7 @@ class EmployeeService extends BaseService<Employee> {
 
           return {success: true, message: "Complete setting new employee account"};
       }catch(error){
-          console.log(`Can not set up employee account due to: ${error}`)
+          console.error(`Can not set up employee account due to: ${error}`)
       }
   }
 

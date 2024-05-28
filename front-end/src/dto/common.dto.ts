@@ -26,3 +26,11 @@ export interface Owner extends Employee {
 export interface BaseWithKey {
     id: string;
   }
+
+  export interface Task{
+    id?: string;
+    name?: string;
+    assigner?: string;
+    assignee?: string;
+    status?: string;
+}
