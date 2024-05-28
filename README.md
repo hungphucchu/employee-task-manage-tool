@@ -44,7 +44,7 @@ Employees: Contains information about employees
 Owner: Contains information about the owner or manager of employees
 ```
 
-Frontend
+# Frontend
 The frontend is built using React.js.
 
 # Commands
