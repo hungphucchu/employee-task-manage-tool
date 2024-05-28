@@ -7,7 +7,7 @@ class AuthenticateMiddleware{
     private readonly accessTokenSecret = process.env.ACCESS_TOKEN_SECRET
     generateAccessToken = (user: JwtPayload | any) => {
         if (!this.accessTokenSecret) return "";
-        return jwt.sign(user, this.accessTokenSecret, { expiresIn: '15m' });
+        return jwt.sign(user, this.accessTokenSecret, { expiresIn: '1d' });
       };
 
       authenticateToken = (req: CustomRequest, res: Response, next: NextFunction) => {

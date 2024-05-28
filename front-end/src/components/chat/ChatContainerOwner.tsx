@@ -35,6 +35,7 @@ const ChatContainerOwner: React.FC = () => {
     setMessages(initialMessages);
 
     socket.on('userToUserMessage', (data) => {
+      console.log("Received data in owner: ", data);
       const { senderId, message } = data;
       setMessages((prevMessages) => ({
         ...prevMessages,
@@ -42,9 +43,9 @@ const ChatContainerOwner: React.FC = () => {
       }));
     });
 
-    // return () => {
-    //   socket.off('userToUserMessage');
-    // };
+    return () => {
+      socket.off('userToUserMessage');
+    };
   }, []);
 
   const handleSendMessage = (newMessage: string) => {

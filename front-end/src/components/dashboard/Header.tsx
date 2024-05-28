@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import '../../css/dashboard/Header.css';
 import { useUserContext } from '../context/UserContext';
+import Button from '../common/Button';
 
 const Header: React.FC = () => {
   const { user, updateUser } = useUserContext();
@@ -46,7 +47,7 @@ const Header: React.FC = () => {
         >
           {isDropdownOpen && (
             <div className="dropdown" ref={dropdownRef}>
-              <button onClick={handleCancel}>X</button>
+              <Button className='close-drop-down' text={'X'} onClick={handleCancel} />
               <ul>
                 {user && Object.entries(user)
                   .filter(([key]) => !['id', 'ownerId', 'accessCode'].includes(key))
@@ -67,11 +68,9 @@ const Header: React.FC = () => {
                   ))}
               </ul>
               {isEditing ? (
-                <div>
-                  <button onClick={handleSubmit}>Submit</button>
-                </div>
+                <Button className='submit-drop-down' text={'Submit'} onClick={handleSubmit} />
               ) : (
-                <button onClick={handleEditClick}>Edit</button>
+                <Button className='submit-drop-down' text={'Edit'} onClick={handleEditClick} />
               )}
             </div>
           )}

@@ -24,9 +24,11 @@ const ChatContainerEmployee: React.FC = () => {
       setMessages((prevMessages) => [...prevMessages, { text: message.text }]);
     });
 
-    // return () => {
-    //   socket.off('userToUserMessage');
-    // };
+
+
+    return () => {
+      socket.off('userToUserMessage');
+    };
   }, []);
 
   useEffect(() => {
@@ -51,8 +53,8 @@ const ChatContainerEmployee: React.FC = () => {
       const message: Message = { text: newMessage };
       setMessages((prevMessages) => [...prevMessages, message]);
       socket.emit('userToUserMessage', {
-        senderId: user?.id, // Replace with the actual sender ID
-        receiverId: owner.userId, // Use owner.userId as receiverId
+        senderId: user?.id, 
+        receiverId: owner.id, 
         message,
       });
     }
