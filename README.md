@@ -2,6 +2,7 @@
 
 This project is a real-time employee task management tool designed to enable managers to efficiently manage tasks assigned to employees, track progress, and dynamically update task statuses. The application supports user authentication, employee management, task creation, assignment, and real-time updates for all connected users.
 
+
 ## Getting Started
 
 To start the entire application, use the following command:
@@ -10,7 +11,7 @@ To start the entire application, use the following command:
 npm run start:app
 ```
 
-# Backend
+## Backend
 
 The backend is built using Node.js, Express.js, and TypeScript.
 
@@ -35,7 +36,7 @@ back-end
 └── utils.ts            # Contains password-related methods
 ```
 
-# Database
+## Database
 
 ```sh
 Users: Contains information about user accounts
@@ -44,10 +45,10 @@ Employees: Contains information about employees
 Owner: Contains information about the owner or manager of employees
 ```
 
-# Frontend
+## Frontend
 The frontend is built using React.js.
 
-# Commands
+## Commands
 
 To run the frontend:
 
@@ -55,7 +56,7 @@ To run the frontend:
 cd front-end && npm run start
 ```
 
-# Project Structure
+## Project Structure
 
 ```sh
 front-end
