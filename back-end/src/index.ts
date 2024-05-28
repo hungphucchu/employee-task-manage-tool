@@ -38,9 +38,9 @@ io.on('connection', (socket) => {
   // Listen for messages from User to User based on their IDs
   socket.on('userToUserMessage', (data) => {
     console.log("Received data: ", data);
-    const { senderId, receiverId, message } = data;
+    const { senderId, receiverId, message, username } = data;
     // Send message to the specified receiver
-    io.to(receiverId).emit('userToUserMessage', { senderId, message });
+    io.to(receiverId).emit('userToUserMessage', { senderId, username, message });
   });
 
   socket.on('disconnect', () => {

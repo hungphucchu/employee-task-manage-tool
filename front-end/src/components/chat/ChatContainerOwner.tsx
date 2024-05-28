@@ -16,10 +16,10 @@ const ChatContainerOwner: React.FC = () => {
   const { employees } = useEmployeeContext();
   const { user } = useUserContext();
 
-  console.log("selectedUser = ");
-  console.log(selectedUser);
-  console.log("messages = ");
-  console.log(messages);
+  // console.log("selectedUser = ");
+  // console.log(selectedUser);
+  // console.log("messages = ");
+  // console.log(messages);
 
   useEffect(() => {
     if (user?.id) {
@@ -35,11 +35,11 @@ const ChatContainerOwner: React.FC = () => {
     setMessages(initialMessages);
 
     socket.on('userToUserMessage', (data) => {
-      console.log("Received data in owner: ", data);
-      const { senderId, message } = data;
+      // console.log("Received data in owner: ", data);
+      const { senderId, message, username } = data;
       setMessages((prevMessages) => ({
         ...prevMessages,
-        [senderId]: [...(prevMessages[senderId] || []), { text: message.text }],
+        [senderId]: [...(prevMessages[senderId] || []), {  sender: username, text: message.text }],
       }));
     });
 
@@ -52,11 +52,12 @@ const ChatContainerOwner: React.FC = () => {
     if (selectedUser && newMessage.trim() !== '') {
       setMessages((prevMessages) => ({
         ...prevMessages,
-        [selectedUser.userId!]: [...prevMessages[selectedUser.userId!], { text: newMessage }],
+        [selectedUser.userId!]: [...prevMessages[selectedUser.userId!], { text: newMessage, sender: String(user?.username) }],
       }));
       socket.emit('userToUserMessage', {
         senderId: user?.id,
         receiverId: selectedUser.userId,
+        username: user?.username,
         message: { text: newMessage },
       });
     }

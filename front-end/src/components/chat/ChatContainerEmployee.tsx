@@ -12,6 +12,7 @@ const ChatContainerEmployee: React.FC = () => {
   const [owner, setOwner] = useState<any>({}); // Modify this type as per your User interface
   const { user } = useUserContext();
 
+
   useEffect(() => {
     const userId = user?.id; // Replace with the actual user ID
     if (userId) {
@@ -20,11 +21,9 @@ const ChatContainerEmployee: React.FC = () => {
 
     socket.on('userToUserMessage', (data) => {
       console.log("Received data in employee: ", data);
-      const { senderId, message } = data;
-      setMessages((prevMessages) => [...prevMessages, { text: message.text }]);
+      const { senderId, message, username } = data;
+      setMessages((prevMessages) => [...prevMessages, { sender: username, text: message.text }]);
     });
-
-
 
     return () => {
       socket.off('userToUserMessage');
@@ -50,11 +49,12 @@ const ChatContainerEmployee: React.FC = () => {
 
   const handleSendMessage = (newMessage: string) => {
     if (newMessage.trim() !== '') {
-      const message: Message = { text: newMessage };
+      const message: Message = { sender: String(user?.username), text: newMessage };
       setMessages((prevMessages) => [...prevMessages, message]);
       socket.emit('userToUserMessage', {
         senderId: user?.id, 
         receiverId: owner.id, 
+        username: user?.username,
         message,
       });
     }

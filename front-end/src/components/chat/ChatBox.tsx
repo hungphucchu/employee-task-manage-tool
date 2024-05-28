@@ -3,6 +3,7 @@ import '../../css/chat/ChatBox.css';
 
 export interface Message {
   text: string;
+  sender: string; // Add sender property
 }
 
 interface ChatBoxProps {
@@ -30,8 +31,8 @@ const ChatBox: React.FC<ChatBoxProps> = ({ selectedUser, messages, onSendMessage
       <div className="chat-header">{selectedUser.name}</div>
       <div className="messages">
         {messages.map((message, index) => (
-          <div key={index} className="message">
-            {message.text}
+          <div key={index} className={`message ${message.sender === 'You' ? 'you' : 'user'}`}>
+            <strong>{message.sender}: </strong> {message.text}
           </div>
         ))}
       </div>
